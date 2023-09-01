@@ -7,6 +7,8 @@ import { getTodos } from '@/redux/todosSlice';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import UserGreeting from '@/app/(protected)/_components/UserGreeting';
 import Card from '@mui/material/Card';
+import BasicCard from '@/components/BasicCard';
+import Typography from '@mui/material/Typography';
 
 const TodoList: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -22,13 +24,13 @@ const TodoList: React.FC = () => {
     <>
       <UserGreeting user={user} />
       <div className='flex flex-col items-center'>
-        <Card variant='outlined' className='p-10'>
+        <BasicCard>
           <ul>
             {todos.map((todo) => (
               <li key={todo.id}>{todo.title}</li>
             ))}
           </ul>
-        </Card>
+        </BasicCard>
       </div>
     </>
   );
