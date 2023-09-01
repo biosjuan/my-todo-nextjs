@@ -1,7 +1,5 @@
 import ReduxProvider from '@/components/ReduxProvider';
 import TodoList from '@/components/TodoList';
-import store from '@/redux/store';
-import { Provider } from 'react-redux';
 
 export default function Home() {
   return (
