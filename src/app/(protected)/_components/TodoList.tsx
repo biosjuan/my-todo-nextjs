@@ -6,9 +6,9 @@ import { RootState } from '../../../redux/store';
 import { getTodos } from '@/redux/todosSlice';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import UserGreeting from '@/app/(protected)/_components/UserGreeting';
-import Card from '@mui/material/Card';
 import BasicCard from '@/components/BasicCard';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { useRouter } from 'next/navigation';
 
 const TodoList: React.FC = () => {
   const dispatch: Dispatch<any> = useDispatch();
@@ -18,8 +18,12 @@ const TodoList: React.FC = () => {
   }, [dispatch]);
 
   const { user } = useCurrentUser('token');
-
   const { todos } = useSelector((state: RootState) => state.todos);
+  const router = useRouter();
+
+  const onNavigate = (id: number) => {
+    router.push(`/${id}`);
+  };
   return (
     <>
       <UserGreeting user={user} />
@@ -27,7 +31,12 @@ const TodoList: React.FC = () => {
         <BasicCard>
           <ul>
             {todos.map((todo) => (
-              <li key={todo.id}>{todo.title}</li>
+              <li key={todo.id}>
+                {todo.title}{' '}
+                <Button onClick={() => onNavigate(todo.id)}>
+                  Go to Individual Todo
+                </Button>
+              </li>
             ))}
           </ul>
         </BasicCard>

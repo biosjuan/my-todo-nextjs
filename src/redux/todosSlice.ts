@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-interface Todo {
+export interface Todo {
   id: number;
   title: string;
   completed: boolean;
