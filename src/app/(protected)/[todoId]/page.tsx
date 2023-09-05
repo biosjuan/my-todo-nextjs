@@ -5,7 +5,9 @@ function TodoPage() {
   const { todoId } = useParams();
 
   return (
-    <div className='flex flex-col items-center text-2xl'>id: {todoId}</div>
+    <div className='flex justify-center items-center h-screen text-2xl'>
+      id: {todoId}
+    </div>
   );
 }
 

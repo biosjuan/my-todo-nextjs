@@ -1,6 +1,9 @@
 import TodoList from '@/app/(protected)/_components/TodoList';
+import { StyledEngineProvider } from '@mui/material';
+import MuiLink from '@mui/material/Link';
 import Button from '@mui/material/Button';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 const LazyComponent = dynamic(() => import('./_components/LazyComponent'), {
   loading: () => <p>Loading...</p>,
@@ -14,7 +17,16 @@ export default function Home() {
           Home Page
         </Button>
       </h1>
-
+      <div className='flex items-center justify-center m-10'>
+        <Button
+          component={Link}
+          href='/queryString?name=Juan&quality=excellent'
+          variant='contained'
+          color='primary'
+        >
+          Go to Query Params Component
+        </Button>
+      </div>
       <TodoList />
       <LazyComponent />
     </>
