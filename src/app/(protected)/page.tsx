@@ -1,8 +1,10 @@
-import ReduxProvider from '@/components/ReduxProvider';
 import TodoList from '@/app/(protected)/_components/TodoList';
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import dynamic from 'next/dynamic';
+
+const DynamicHeader = dynamic(() => import('./_components/LazyComponent'), {
+  loading: () => <p>Loading...</p>,
+});
 
 export default function Home() {
   return (
@@ -14,6 +16,7 @@ export default function Home() {
       </h1>
 
       <TodoList />
+      <DynamicHeader />
     </>
   );
 }
