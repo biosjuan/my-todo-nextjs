@@ -2,10 +2,10 @@ import TodoList from '@/app/(protected)/_components/TodoList';
 import Button from '@mui/material/Button';
 import dynamic from 'next/dynamic';
 
-const DynamicHeader = dynamic(() => import('./_components/LazyComponent'), {
+const LazyComponent = dynamic(() => import('./_components/LazyComponent'), {
   loading: () => <p>Loading...</p>,
 });
-
+// https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading
 export default function Home() {
   return (
     <>
@@ -16,7 +16,7 @@ export default function Home() {
       </h1>
 
       <TodoList />
-      <DynamicHeader />
+      <LazyComponent />
     </>
   );
 }
