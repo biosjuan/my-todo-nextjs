@@ -15,10 +15,18 @@ const initialState: UserState = {
   currentUser: null,
 };
 
-export const userLogin = createAsyncThunk('user/login', async (user: User) => {
-  const response = await axios.post('/api/login', user);
-  return response.data;
-});
+export const userLogin = createAsyncThunk(
+  'user/login',
+  async (user: User, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await axios.post('/api/login', user);
+      return response.data;
+    } catch (error: any) {
+      dispatch(error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const userSliede = createSlice({
   name: 'user',

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { setError } from './errorSlice';
 
 export interface Todo {
   id: number;
@@ -15,10 +16,20 @@ const initialState: TodoState = {
   todos: [],
 };
 
-export const getTodos = createAsyncThunk('todos/getTodos', async () => {
-  const response = await axios.get('/api/todos');
-  return response.data;
-});
+export const getTodos = createAsyncThunk(
+  'todos/getTodos',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await axios.get('/api/todos');
+      return response.data;
+    } catch (error: any) {
+      // Handle the error and dispatch it to the error slice
+      console.log(JSON.stringify(error.message));
+      dispatch(setError(error.message));
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const todosSlice = createSlice({
   name: 'todos',
@@ -41,3 +52,6 @@ const todosSlice = createSlice({
 
 export const { addTodo, deleteTodo } = todosSlice.actions;
 export default todosSlice.reducer;
+function dispatch(arg0: any) {
+  throw new Error('Function not implemented.');
+}
