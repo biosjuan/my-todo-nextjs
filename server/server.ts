@@ -1,5 +1,5 @@
-import * as express from 'express';
-import { Application } from 'express';
+import express, { Application } from 'express';
+
 import { getAllTodos } from './get-todo.route';
 import { loginUser } from './auth.route';
 import { saveTodo } from './save-todo.route';
