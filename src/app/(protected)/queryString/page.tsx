@@ -3,6 +3,18 @@ import React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { Button } from '@mui/material';
+import ReactVirtualizedTable from '@/components/VirtuosoTable';
+import AutoSizerTable, { TableColumn } from '@/components/AutoSizer';
+import Image from 'next/image'; // Import next/image
+import { TableCellRenderer } from 'react-virtualized';
+import MultipleSelectCheckmarks from '../_components/selectColumns';
+// import VirtualizedTable from '@/components/AutoSizer';
+
+interface Item {
+  id: number;
+  name: string;
+  email: string;
+}
 
 function QueryStringComponent() {
   const router = useRouter();
@@ -26,6 +38,14 @@ function QueryStringComponent() {
         >
           Back
         </Button>
+      </div>
+      <div className='flex items-center justify-center'>
+        <MultipleSelectCheckmarks />
+      </div>
+      <div className='flex items-center justify-center'>
+        <div className='w-5/6'>
+          <AutoSizerTable />
+        </div>
       </div>
     </>
   );

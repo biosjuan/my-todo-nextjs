@@ -18,7 +18,11 @@ const initialState: TodoState = {
 
 export const getTodos = createAsyncThunk(
   'todos/getTodos',
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { dispatch, getState, rejectWithValue }) => {
+    const { todos } = getState() as TodoState;
+    if (todos.length > 0) {
+      return todos;
+    }
     try {
       const response = await axios.get('/api/todos');
       return response.data;
@@ -52,6 +56,6 @@ const todosSlice = createSlice({
 
 export const { addTodo, deleteTodo } = todosSlice.actions;
 export default todosSlice.reducer;
-function dispatch(arg0: any) {
-  throw new Error('Function not implemented.');
-}
+// function dispatch(arg0: any) {
+//   throw new Error('Function not implemented.');
+// }
